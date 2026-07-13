@@ -1,0 +1,50 @@
+name: New Behavioral Health Practices Weekly
+description: Export newly enumerated behavioral-health organization NPIs from the latest CMS weekly file through a cost-capped Apify run.
+author: ActableSite
+
+branding:
+  icon: activity
+  color: purple
+
+inputs:
+  apify-token:
+    description: Apify API token. Store it as a GitHub Actions secret.
+    required: true
+  states:
+    description: Optional comma-separated state or territory codes, such as CA,TX,WA.
+    required: false
+    default: ""
+  preview:
+    description: Return the deterministic 15-row preview without charging the $9 full-edition event.
+    required: false
+    default: "true"
+  max-total-charge-usd:
+    description: Hard cap for the complete Apify run. Use 0.10 for preview or at least 9.25 for a full edition.
+    required: false
+    default: "0.10"
+  output-file:
+    description: JSON file written inside the workflow workspace.
+    required: false
+    default: behavioral-health-practices.json
+
+outputs:
+  record-count:
+    description: Number of records written to the output file.
+    value: ${{ steps.run.outputs.record-count }}
+  output-file:
+    description: Path to the JSON output file.
+    value: ${{ steps.run.outputs.output-file }}
+
+runs:
+  using: composite
+  steps:
+    - id: run
+      name: Run the cost-capped Actor
+      shell: bash
+      env:
+        APIFY_TOKEN: ${{ inputs.apify-token }}
+        STATES: ${{ inputs.states }}
+        PREVIEW: ${{ inputs.preview }}
+        MAX_TOTAL_CHARGE_USD: ${{ inputs.max-total-charge-usd }}
+        OUTPUT_FILE: ${{ inputs.output-file }}
+      run: '"$GITHUB_ACTION_PATH/scripts/run-actor.sh"'

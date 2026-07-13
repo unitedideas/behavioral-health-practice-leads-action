@@ -1,0 +1,8 @@
+{
+  "name": "behavioral-health-practice-leads-action",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  }
+}
