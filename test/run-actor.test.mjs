@@ -77,7 +77,11 @@ test("free preview needs no token, filters states, and publishes action outputs"
   assert.match(summary, /State filter: \*\*CA, TX\*\*/);
   assert.match(summary, /CMS NPPES downloadable files/);
   assert.match(summary, /An NPI does not prove licensure/);
-  assert.match(summary, /\$9 full weekly edition on Apify/);
+  assert.match(summary, /Buy the current national CSV for \$19 once/);
+  assert.match(summary, /client_reference_id=github_action_summary/);
+  assert.match(summary, /no Apify account, subscription, or renewal/);
+  assert.match(summary, /Automate the full weekly edition on Apify/);
+  assert.match(summary, /one \$9 event plus bounded buyer-paid platform usage/);
 });
 
 test("state filters reject non-code input before any request", async () => {
@@ -145,7 +149,7 @@ test("full editions publish a fulfillment summary without another purchase promp
   const summary = await readFile(githubSummary, "utf8");
   assert.match(summary, /\*\*1 full-edition records\*\*/);
   assert.match(summary, /caller-funded, cost-capped Apify run/);
-  assert.doesNotMatch(summary, /Run the \$9 full weekly edition/);
+  assert.doesNotMatch(summary, /Need every current row/);
 });
 
 test("HTTP failures do not publish a dataset", async () => {

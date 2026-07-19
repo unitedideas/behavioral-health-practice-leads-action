@@ -2,7 +2,10 @@
 
 Download organizations that received a behavioral-health NPI in the latest CMS weekly file. The free preview needs no account, token, or payment and writes 15 current records as clean JSON inside your workflow.
 
-When the sample fits, the full edition runs [New Behavioral Health Practices Weekly](https://apify.com/actablesite/new-behavioral-health-practices-actor) in the buyer's Apify account. It charges one $9 event plus small platform usage and refuses to run without both a token and an explicit $9.25 total-charge cap.
+When the sample fits, choose the delivery path that matches the job:
+
+- [Buy the current national CSV for **$19 once**](https://buy.stripe.com/6oUdR29Ue7rDg80fLd6oo0i?client_reference_id=github_action_readme&utm_source=github&utm_medium=repository&utm_campaign=practice_radar_edition) for private browser delivery with no Apify account, subscription, or renewal. The purchased edition does not update.
+- Run [New Behavioral Health Practices Weekly](https://apify.com/actablesite/new-behavioral-health-practices-actor) in your own Apify account when the feed belongs inside an automated workflow. It charges one **$9 event** plus small platform usage and refuses to run without both a token and an explicit $9.25 total-charge cap.
 
 ## Quick start: free preview
 
@@ -29,7 +32,7 @@ jobs:
 
 The preview downloads the current, versioned 15-row sample from the public [Practice Radar data repository](https://github.com/unitedideas/practice-radar-data). It does not create an Apify run or incur a charge. The workflow summary reports the delivered count, CMS weekly period, state filter, source, and data limitation before the optional full-edition handoff.
 
-## Full weekly edition
+## Automate the full weekly edition
 
 Create an Apify API token in your own account, store it as the repository secret `APIFY_TOKEN`, set `preview: false`, and explicitly raise the cap:
 
@@ -44,6 +47,8 @@ Create an Apify API token in your own account, store it as the repository secret
 ```
 
 The full edition event is charged once only after the Actor downloads, parses, and validates the current CMS archive. The cap covers the fixed $9 event and bounded Apify platform usage. If the charge is not authorized, the Actor does not deliver full records.
+
+If you only need a downloadable national CSV for the current measured week, the [$19 one-time edition](https://buy.stripe.com/6oUdR29Ue7rDg80fLd6oo0i?client_reference_id=github_action_readme&utm_source=github&utm_medium=repository&utm_campaign=practice_radar_edition) avoids the Apify setup. It uses private browser delivery and never renews.
 
 ## Inputs
 

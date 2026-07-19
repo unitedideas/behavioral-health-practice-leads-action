@@ -3,6 +3,7 @@ set -euo pipefail
 
 actor_id="actablesite~new-behavioral-health-practices-actor"
 public_preview_url="https://raw.githubusercontent.com/unitedideas/practice-radar-data/main/public/sample.json"
+direct_edition_checkout_url="https://buy.stripe.com/6oUdR29Ue7rDg80fLd6oo0i?client_reference_id=github_action_summary&utm_source=github&utm_medium=workflow_summary&utm_campaign=practice_radar_edition"
 preview="${PREVIEW:-true}"
 states="${STATES:-}"
 max_charge="${MAX_TOTAL_CHARGE_USD:-0.10}"
@@ -120,7 +121,9 @@ if [[ -n "${GITHUB_STEP_SUMMARY:-}" ]]; then
       fi
       printf -- '- Source: [CMS NPPES downloadable files](https://download.cms.gov/nppes/NPI_Files.html)\n\n'
       printf 'An NPI does not prove licensure, credentialing, active operation, service availability, demand, or buying intent. Verify every record before consequential use.\n\n'
-      printf '[Run the $9 full weekly edition on Apify](https://apify.com/actablesite/new-behavioral-health-practices-actor) when the sample fits. The buyer also pays bounded Apify platform usage.\n'
+      printf '### Need every current row?\n\n'
+      printf -- '- [Buy the current national CSV for $19 once](%s) for private browser delivery with no Apify account, subscription, or renewal. The purchased edition does not update.\n' "$direct_edition_checkout_url"
+      printf -- '- [Automate the full weekly edition on Apify](https://apify.com/actablesite/new-behavioral-health-practices-actor) for one $9 event plus bounded buyer-paid platform usage.\n'
     else
       printf '## Behavioral-health NPI lead export\n\n'
       printf '**%s full-edition records** were written to `%s` through the caller-funded, cost-capped Apify run.\n\n' "$record_count" "$output_file"
